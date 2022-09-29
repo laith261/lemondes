@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../Functions/Functions.dart';
 import '../Functions/User.dart';
 import '../Widgets/for_home.dart';
+import 'Global.dart';
 import 'Notfy.dart';
 
 class Home extends StatefulWidget {
@@ -62,7 +63,7 @@ class _HomeState extends State<Home> {
                   HomeImage(
                     image: 'global.png',
                     func: () {
-                      // push(context, const Global());
+                      push(context, const Global());
                     },
                   ),
                   const SizedBox(

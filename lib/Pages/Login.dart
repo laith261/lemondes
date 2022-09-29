@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
+import 'package:lemondes/Pages/SingUp.dart';
 
 import 'package:lemondes/Widgets/for_all.dart';
 import 'package:provider/provider.dart';
 
-import 'Home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -110,7 +110,7 @@ class _LoginState extends State<Login> {
                       ),
                       TextButton(
                           onPressed: () {
-                            push(context, Home());
+                            push(context, const SingUp());
                           },
                           child: const Text("Don`t Have Account? SingUp"))
                     ],
