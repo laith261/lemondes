@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
+import 'package:lemondes/Pages/Account.dart';
 import 'package:provider/provider.dart';
 
 import '../Pages/Home.dart';
@@ -63,7 +64,7 @@ class DrawerWidget extends StatelessWidget {
                       DrawerButton(
                         icon: Icons.account_circle_rounded,
                         text: "Account",
-                        func: () => push(context, const Home()),
+                        func: () => push(context, const Account()),
                       ),
                       DrawerButton(
                         icon: Icons.view_list_rounded,
