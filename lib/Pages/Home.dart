@@ -20,9 +20,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // openMessage(context);
-    // foregroundMessage(context);
-    // backgroundMessage(context);
+    openMessage(context);
+    foregroundMessage(context);
+    backgroundMessage(context);
     local?.userCheck(context.read<User>().login);
   }
 

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "506266158557",
+    "project_id": "lemonde-b49e8",
+    "storage_bucket": "lemonde-b49e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506266158557:android:1360ba88a566bab9e0a234",
+        "android_client_info": {
+          "package_name": "com.iq.lemondes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506266158557-3sfcq3gs8seqh0j1plsl5i03nf4q51oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7NLQ3199TbcyNk5J8voiinI72jOYRZhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506266158557-3sfcq3gs8seqh0j1plsl5i03nf4q51oi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "506266158557-7v6emcsemnlvdjp7aciccf9k0hfqlsnr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iq.lemondes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
