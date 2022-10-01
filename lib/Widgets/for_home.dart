@@ -6,7 +6,7 @@ import 'package:lemondes/Pages/Orders.dart';
 import 'package:provider/provider.dart';
 
 import '../Pages/Currency.dart';
-import '../Pages/Home.dart';
+import '../Pages/Link.dart';
 import '../Pages/Login.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -48,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
             DrawerButton(
               icon: Icons.link,
               text: "Link",
-              func: () => push(context, const Home()),
+              func: () => push(context, const LinkPage()),
             ),
             DrawerButton(
               icon: Icons.currency_exchange,
