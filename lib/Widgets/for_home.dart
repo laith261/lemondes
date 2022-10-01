@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
 import 'package:lemondes/Pages/Account.dart';
+import 'package:lemondes/Pages/Orders.dart';
 import 'package:provider/provider.dart';
 
 import '../Pages/Currency.dart';
@@ -36,7 +37,7 @@ class DrawerWidget extends StatelessWidget {
                         icon: Icons.login_rounded,
                         text: "Login",
                         func: () {
-                          push(context, Login());
+                          push(context, const Login());
                         },
                       ),
                     ],
@@ -70,7 +71,7 @@ class DrawerWidget extends StatelessWidget {
                       DrawerButton(
                         icon: Icons.view_list_rounded,
                         text: "My Orders",
-                        func: () => push(context, const Home()),
+                        func: () => push(context, const Orders()),
                       ),
                       DrawerButton(
                         icon: Icons.logout_rounded,

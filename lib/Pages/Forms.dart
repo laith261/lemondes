@@ -31,10 +31,9 @@ class _FormsState extends State<Forms> {
           title: Text(widget.store),
           actions: [
             IconButton(
-                onPressed: () {
-                  addForm();
-                },
-                icon: const Icon(Icons.add_rounded)),
+              onPressed: () => addForm(),
+              icon: const Icon(Icons.add_rounded),
+            ),
           ],
         ),
         body: SizedBox(
@@ -55,7 +54,7 @@ class _FormsState extends State<Forms> {
                       builder: (context, sta) {
                         return Column(
                           children: [
-                            for(var i=0;i<_forms.length;i++)
+                            for (var i = 0; i < _forms.length; i++)
                               FormWidget(
                                 delete: delete,
                                 data: _forms[i],
@@ -69,11 +68,12 @@ class _FormsState extends State<Forms> {
                     SizedBox(
                       width: double.infinity,
                       child: FormText(
-                          label: 'Note',
-                          value: note,
-                          onsave: (value) {
-                            note = value!;
-                          }),
+                        label: 'Note',
+                        value: note,
+                        onsave: (value) {
+                          note = value!;
+                        },
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -101,13 +101,13 @@ class _FormsState extends State<Forms> {
   }
 
   void addForm() {
-    _form.currentState!.save();
+    if(_forms.isNotEmpty) _form.currentState!.save();
     widgets.currentState!.setState(() {
       _forms.add({"link": "", "size": "", "color": "", "quantity": ""});
     });
   }
 
-  void saveValue(int index,String name,String? value) {
+  void saveValue(int index, String name, String? value) {
     _forms[index][name] = value!;
   }
 
