@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path/path.dart';
 
+import '../Pages/Forms.dart';
+import '../Pages/Products.dart';
 import 'for_all.dart';
 
 class Store extends StatelessWidget {
@@ -28,15 +30,15 @@ class Store extends StatelessWidget {
           if (context.read<User>().user == null && location != "Local") {
             push(context, const Login());
           } else {
-            // push(context,
-            //   location == "Local"
-            //       ? Products(
-            //     store: store['name'],
-            //   )
-            //       : Forms(
-            //     store: store['name'],
-            //   ),
-            // );
+            push(context,
+              location == "Local"
+                  ? Products(
+                store: store['name'],
+              )
+                  : Forms(
+                store: store['name'],
+              ),
+            );
           }
         },
         child: Column(

@@ -6,6 +6,7 @@ import '../Functions/User.dart';
 import '../Widgets/for_home.dart';
 import 'Global.dart';
 import 'Notfy.dart';
+import 'Stores.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -71,7 +72,7 @@ class _HomeState extends State<Home> {
                   ),
                   HomeImage(
                     func: () {
-                      // push(context, const Stores(location: "Local"));
+                      push(context, const Stores(location: "Local"));
                     },
                     image: 'local.png',
                   ),

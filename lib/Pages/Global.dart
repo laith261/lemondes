@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lemondes/Widgets/for_home.dart';
 
+import '../Functions/Functions.dart';
+import 'Stores.dart';
+
 
 class Global extends StatelessWidget {
   const Global({Key? key}) : super(key: key);
@@ -25,7 +28,7 @@ class Global extends StatelessWidget {
                     ),
                     HomeImage(
                       func: () {
-                        // push(context, const Stores(location: "Uae"));
+                        push(context, const Stores(location: "Uae"));
                       },
                       image: 'uae.png',
                     ),
@@ -34,7 +37,7 @@ class Global extends StatelessWidget {
                     ),
                     HomeImage(
                       func: () {
-                        // push(context, const Stores(location: "Turkey"));
+                        push(context, const Stores(location: "Turkey"));
                       },
                       image: 'turkey.png',
                     ),

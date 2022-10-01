@@ -4,6 +4,7 @@ import 'package:lemondes/Functions/User.dart';
 import 'package:lemondes/Pages/Account.dart';
 import 'package:provider/provider.dart';
 
+import '../Pages/Currency.dart';
 import '../Pages/Home.dart';
 import '../Pages/Login.dart';
 
@@ -51,7 +52,7 @@ class DrawerWidget extends StatelessWidget {
             DrawerButton(
               icon: Icons.currency_exchange,
               text: "Currency Exchange",
-              func: () => push(context, const Home()),
+              func: () => push(context, const Currency()),
             ),
             // show if user login
             Selector<User, Map?>(

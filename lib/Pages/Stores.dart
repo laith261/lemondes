@@ -35,9 +35,9 @@ class _StoresState extends State<Stores> {
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: count.toInt()),
-                itemCount: snap.data!.length,
+                itemCount: snap.data!["data"].length,
                 itemBuilder: (context, i) => Store(
-                  store: snap.data![i],
+                  store: snap.data!["data"][i],
                   location: widget.location,
                 ),
               );
