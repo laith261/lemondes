@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Http.dart';
 import 'package:lemondes/Functions/Local.dart';
 
+import '../Pages/Items.dart';
+
 String link = "http://localhost/le";
 Http https = Http();
 LocalData? local;
@@ -40,22 +42,22 @@ snakBar(text, status, context, {Function? action, second}) {
 
 void foregroundMessage(context) {
   FirebaseMessaging.onMessage.listen((event) {
-    snakBar(event.notification!.body, true, context, action: () {}
-        // push(context, Items(order: event.data["order"])));
-        );
+    snakBar(event.notification!.body, true, context, action: () {
+      push(context, Items(order: event.data["order"]));
+    });
   });
 }
 
 void openMessage(context) {
   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-    // push(context, Items(order: event.data["order"]));
+    push(context, Items(order: event.data["order"]));
   });
 }
 
 void backgroundMessage(context) {
   FirebaseMessaging.instance.getInitialMessage().then((event) {
     if (event != null) {
-      // push(context, Items(order: event.data["order"]));
+      push(context, Items(order: event.data["order"]));
     }
   });
 }
