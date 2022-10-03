@@ -27,10 +27,11 @@ class Http {
     return response.body;
   }
 
-  Future<Map<String,dynamic>> getMap(Map<String, String> map, {Map? query}) async =>
+  Future<Map<String, dynamic>> getMap(Map<String, String> map,
+          {Map? query}) async =>
       await get(query: query).then((value) => jsonDecode(value));
 
-  Future<Map<String,dynamic>> postMap(Map<String, String>? data) async =>
+  Future<Map<String, dynamic>> postMap(Map<String, String>? data) async =>
       await post(data: data).then((value) => jsonDecode(value));
 
   String replace(String word) {

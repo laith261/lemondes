@@ -75,7 +75,8 @@ class Product extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Text(item["detail"], style: const TextStyle(fontSize: 18)),
+                    child: Text(item["detail"],
+                        style: const TextStyle(fontSize: 18)),
                   ),
                 ],
               ),

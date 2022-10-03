@@ -1,4 +1,3 @@
-
 // loading widget
 import 'package:flutter/material.dart';
 
@@ -94,7 +93,7 @@ class MyInput extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor:
-              Theme.of(context).colorScheme.secondary.withOpacity(.9),
+                  Theme.of(context).colorScheme.secondary.withOpacity(.9),
               floatingLabelAlignment: FloatingLabelAlignment.center,
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
@@ -115,4 +114,3 @@ class MyInput extends StatelessWidget {
     );
   }
 }
-

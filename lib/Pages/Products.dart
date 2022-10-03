@@ -59,29 +59,29 @@ class _ProductsState extends State<Products> {
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Stack(
             children: [
-                  Visibility(
-                    visible: !isShow,
-                    child: FutureBuilder<Map>(
-                      builder: (context,snap) {
-                        if(snap.hasData && (snap.data!["data"] as List).isNotEmpty) {
-                          return GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: count.toInt()),
-                            itemBuilder: (context, i) =>
-                                ProductWidget(
-                                  data: snap.data!["data"][i],
-                                ),
-                            itemCount: snap.data!["data"].length,
-                          );
-                        }
-                        else if(snap.hasData && (snap.data!["data"] as List).isEmpty){
-                          return const Empty();
-                        }
-                        return const Loading();
-                      },
-                      future: _data,
-                    ),
-                  ),
+              Visibility(
+                visible: !isShow,
+                child: FutureBuilder<Map>(
+                  builder: (context, snap) {
+                    if (snap.hasData &&
+                        (snap.data!["data"] as List).isNotEmpty) {
+                      return GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: count.toInt()),
+                        itemBuilder: (context, i) => ProductWidget(
+                          data: snap.data!["data"][i],
+                        ),
+                        itemCount: snap.data!["data"].length,
+                      );
+                    } else if (snap.hasData &&
+                        (snap.data!["data"] as List).isEmpty) {
+                      return const Empty();
+                    }
+                    return const Loading();
+                  },
+                  future: _data,
+                ),
+              ),
               Visibility(
                 visible: isShow,
                 maintainState: true,
@@ -105,7 +105,8 @@ class _ProductsState extends State<Products> {
   void removeFilter(String name, String value) => filter[name]!.remove(value);
   void resetFilter() => filter = {"types": [], "sizes": [], "colors": []};
   void getItems() {
-    _data=https.postMap({"local": widget.store, "filter": jsonEncode(filter)});
+    _data =
+        https.postMap({"local": widget.store, "filter": jsonEncode(filter)});
   }
 
   void gitFilter() {

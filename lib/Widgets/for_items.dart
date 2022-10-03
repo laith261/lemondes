@@ -54,8 +54,10 @@ class ItemsWidget extends StatelessWidget {
           ),
         ),
         trailing: Text("\$$total"),
-        title:Text("${item["qty"]} X \$${item["price"] ?? 0}"),
-        subtitle:item["type"] == "link"?Text("${item["color"]} - ${item["size"]}"):null,
+        title: Text("${item["qty"]} X \$${item["price"] ?? 0}"),
+        subtitle: item["type"] == "link"
+            ? Text("${item["color"]} - ${item["size"]}")
+            : null,
       ),
     );
   }

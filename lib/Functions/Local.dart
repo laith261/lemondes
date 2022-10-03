@@ -8,7 +8,6 @@ class LocalData {
   // get data from local storage
   Future<String?> get(String name) async => prefs.getString(name);
 
-
   // get user data from local storage
   Future<Map?> getUser() async {
     var data = prefs.getString("user");

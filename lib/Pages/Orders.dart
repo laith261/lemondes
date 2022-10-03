@@ -37,22 +37,23 @@ class _OrdersState extends State<Orders> {
             child: SizedBox(
               width: 300,
               child: FutureBuilder<Map>(
-                future: https.postMap({"orders": context.read<User>().user!["uid"]}),
-                builder: (context,snap) {
-                  if(snap.hasData && (snap.data!["data"] as List).isNotEmpty){
-                    return ListView.builder(
-                      itemBuilder: (context, i) => Order(
-                        item: snap.data!["data"][i],
-                      ),
-                      itemCount: snap.data!["data"].length,
-                    );
-                  }
-                  if(snap.hasData && (snap.data!["data"] as List).isEmpty){
-                   return const Empty();
-                  }
-                  return const Loading();
-                }
-              ),
+                  future: https
+                      .postMap({"orders": context.read<User>().user!["uid"]}),
+                  builder: (context, snap) {
+                    if (snap.hasData &&
+                        (snap.data!["data"] as List).isNotEmpty) {
+                      return ListView.builder(
+                        itemBuilder: (context, i) => Order(
+                          item: snap.data!["data"][i],
+                        ),
+                        itemCount: snap.data!["data"].length,
+                      );
+                    }
+                    if (snap.hasData && (snap.data!["data"] as List).isEmpty) {
+                      return const Empty();
+                    }
+                    return const Loading();
+                  }),
             ),
           ),
         ),

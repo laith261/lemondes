@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
+import 'package:lemondes/Pages/Reset.dart';
 import 'package:lemondes/Pages/SingUp.dart';
 
 import 'package:lemondes/Widgets/for_all.dart';
 import 'package:provider/provider.dart';
-
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -73,7 +73,10 @@ class _LoginState extends State<Login> {
                         height: 30,
                       ),
                       AnimatedCrossFade(
-                        firstChild: const Loading(),
+                        firstChild: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Loading(),
+                        ),
                         secondChild: SizedBox(
                           width: 100,
                           child: ElevatedButton(
@@ -81,8 +84,8 @@ class _LoginState extends State<Login> {
                               if (form.currentState!.validate()) {
                                 form.currentState!.save();
                                 setState(() => send = true);
-                                https.postMap({"login": jsonEncode(login)})
-                                    .then((value) {
+                                https.postMap(
+                                    {"login": jsonEncode(login)}).then((value) {
                                   if (value["st"]) {
                                     context.read<User>().login(value['data']);
                                     Navigator.pop(context);
@@ -105,6 +108,14 @@ class _LoginState extends State<Login> {
                             : CrossFadeState.showSecond,
                         duration: const Duration(milliseconds: 500),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            push(context, const Reset());
+                          },
+                          child: const Text("Forgot Password?")),
                       const SizedBox(
                         height: 20,
                       ),

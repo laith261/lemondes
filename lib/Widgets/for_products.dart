@@ -52,11 +52,11 @@ class ProductWidget extends StatelessWidget {
 class Filters extends StatelessWidget {
   const Filters(
       {Key? key,
-        required this.add,
-        required this.remove,
-        required this.isIn,
-        required this.resetFilter,
-        required this.gitFilter})
+      required this.add,
+      required this.remove,
+      required this.isIn,
+      required this.resetFilter,
+      required this.gitFilter})
       : super(key: key);
   final Function(String, String) add;
   final Function(String, String) remove;
@@ -82,8 +82,8 @@ class Filters extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () => set(() {
-                          resetFilter();
-                        }),
+                              resetFilter();
+                            }),
                         icon: const Icon(Icons.unpublished_rounded)),
                     ElevatedButton(
                         onPressed: () => gitFilter(),
@@ -126,11 +126,11 @@ class Filters extends StatelessWidget {
 class FiltersBox extends StatefulWidget {
   const FiltersBox(
       {Key? key,
-        required this.name,
-        required this.data,
-        required this.add,
-        required this.remove,
-        required this.isIn})
+      required this.name,
+      required this.data,
+      required this.add,
+      required this.remove,
+      required this.isIn})
       : super(key: key);
   final String name;
   final List data;

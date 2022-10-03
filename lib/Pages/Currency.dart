@@ -16,11 +16,10 @@ class _CurrencyState extends State<Currency> {
   var usd = TextEditingController();
   Future<Map<String, dynamic>>? _data;
 
-  void exchange(tyr,usdd) {
-      usd.text = (double.parse(ctyr.text) / double.parse(tyr))
-          .toStringAsFixed(2);
-      iqd.text = (double.parse(cusd.text) * double.parse(usdd))
-          .toStringAsFixed(2);
+  void exchange(tyr, usdd) {
+    usd.text = (double.parse(ctyr.text) / double.parse(tyr)).toStringAsFixed(2);
+    iqd.text =
+        (double.parse(cusd.text) * double.parse(usdd)).toStringAsFixed(2);
   }
 
   @override
@@ -35,87 +34,89 @@ class _CurrencyState extends State<Currency> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Currency"),
-        ),
-        body: FutureBuilder<Map>(
-          future: _data,
-          builder: (context,snap){
-            if(snap.hasData){
-              exchange(snap.data!["data"][0]["tyr"],snap.data!["data"][0]["usd"]);
-              return SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: Center(
-                  child: SizedBox(
-                    width: 300,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: MyInput(
-                                controller: cusd,
-                                label: "USD",
+          appBar: AppBar(
+            title: const Text("Currency"),
+          ),
+          body: FutureBuilder<Map>(
+            future: _data,
+            builder: (context, snap) {
+              if (snap.hasData) {
+                exchange(
+                    snap.data!["data"][0]["tyr"], snap.data!["data"][0]["usd"]);
+                return SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Center(
+                    child: SizedBox(
+                      width: 300,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: MyInput(
+                                  controller: cusd,
+                                  label: "USD",
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: MyInput(
-                                controller: iqd,
-                                label: "IQD",
-                                onlyRead: true,
+                              const SizedBox(
+                                width: 10,
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: MyInput(
-                                controller: ctyr,
-                                label: "TRY",
+                              Expanded(
+                                child: MyInput(
+                                  controller: iqd,
+                                  label: "IQD",
+                                  onlyRead: true,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: MyInput(
-                                controller: usd,
-                                label: "USD",
-                                onlyRead: true,
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: MyInput(
+                                  controller: ctyr,
+                                  label: "TRY",
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () =>exchange(snap.data!["data"][0]["tyr"],snap.data!["data"][0]["usd"]),
-                          child: const Text(
-                            "Exchange",
-                            style: TextStyle(
-                              fontSize: 15,
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: MyInput(
+                                  controller: usd,
+                                  label: "USD",
+                                  onlyRead: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () => exchange(
+                                snap.data!["data"][0]["tyr"],
+                                snap.data!["data"][0]["usd"]),
+                            child: const Text(
+                              "Exchange",
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            }
-            return const Loading();
-          },
-        )
-      ),
+                );
+              }
+              return const Loading();
+            },
+          )),
     );
   }
 }

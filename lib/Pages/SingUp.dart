@@ -128,7 +128,10 @@ class _SingUpState extends State<SingUp> {
                         height: 30,
                       ),
                       AnimatedCrossFade(
-                        firstChild: const Loading(),
+                        firstChild: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Loading(),
+                        ),
                         secondChild: SizedBox(
                           width: 100,
                           child: ElevatedButton(
@@ -136,7 +139,9 @@ class _SingUpState extends State<SingUp> {
                               if (form.currentState!.validate()) {
                                 form.currentState!.save();
                                 setState(() => send = true);
-                                https.postMap({"singup": jsonEncode(singup)}).then((value){
+                                https.postMap({
+                                  "singup": jsonEncode(singup)
+                                }).then((value) {
                                   if (value["st"]) {
                                     context.read<User>().login(value['data']);
                                     Navigator.popUntil(

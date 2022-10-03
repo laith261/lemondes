@@ -101,7 +101,7 @@ class _FormsState extends State<Forms> {
   }
 
   void addForm() {
-    if(_forms.isNotEmpty) _form.currentState!.save();
+    if (_forms.isNotEmpty) _form.currentState!.save();
     widgets.currentState!.setState(() {
       _forms.add({"link": "", "size": "", "color": "", "quantity": ""});
     });

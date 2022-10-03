@@ -26,40 +26,41 @@ class _LinkPageState extends State<LinkPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: SizedBox(
-              width: 250,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: theLink,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                      filled: true,
-                      fillColor: Colors.blueGrey,
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: SizedBox(
+            width: 250,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: theLink,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  decoration: const InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
                     ),
+                    filled: true,
+                    fillColor: Colors.blueGrey,
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        link = theLink.text;
-                        local!.set("link", link);
-                        snakBar("done", true, context);
-                        setState(() {});
-                      },
-                      child: const Text("save")),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      link = theLink.text;
+                      local!.set("link", link);
+                      snakBar("done", true, context);
+                      setState(() {});
+                    },
+                    child: const Text("save")),
+              ],
             ),
           ),
-        ),);
+        ),
+      ),
+    );
   }
 }

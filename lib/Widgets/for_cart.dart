@@ -7,9 +7,9 @@ import 'for_all.dart';
 class CartWidget extends StatelessWidget {
   const CartWidget(
       {Key? key,
-        required this.item,
-        required this.delete,
-        required this.change})
+      required this.item,
+      required this.delete,
+      required this.change})
       : super(key: key);
   final Map item;
   final Function(String) delete;

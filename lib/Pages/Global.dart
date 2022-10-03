@@ -4,7 +4,6 @@ import 'package:lemondes/Widgets/for_home.dart';
 import '../Functions/Functions.dart';
 import 'Stores.dart';
 
-
 class Global extends StatelessWidget {
   const Global({Key? key}) : super(key: key);
 

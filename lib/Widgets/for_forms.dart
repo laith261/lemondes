@@ -73,46 +73,46 @@ class FormWidget extends StatelessWidget {
                 children: [
                   Expanded(
                       child: FormText(
-                        onvalid: (value) {
-                          if (value!.isEmpty) {
-                            return "Fill The Input";
-                          }
-                          return null;
-                        },
-                        value: data["color"],
-                        label: "Color",
-                        onsave: (value) => onsave(index, "color", value),
-                      )),
+                    onvalid: (value) {
+                      if (value!.isEmpty) {
+                        return "Fill The Input";
+                      }
+                      return null;
+                    },
+                    value: data["color"],
+                    label: "Color",
+                    onsave: (value) => onsave(index, "color", value),
+                  )),
                   const SizedBox(
                     width: 3,
                   ),
                   Expanded(
                       child: FormText(
-                        onvalid: (value) {
-                          if (value!.isEmpty) {
-                            return "Fill The Input";
-                          }
-                          return null;
-                        },
-                        value: data["size"],
-                        label: "Size",
-                        onsave: (value) => onsave(index, "size", value),
-                      )),
+                    onvalid: (value) {
+                      if (value!.isEmpty) {
+                        return "Fill The Input";
+                      }
+                      return null;
+                    },
+                    value: data["size"],
+                    label: "Size",
+                    onsave: (value) => onsave(index, "size", value),
+                  )),
                   const SizedBox(
                     width: 3,
                   ),
                   Expanded(
                       child: FormText(
-                        onvalid: (value) {
-                          if (value!.isEmpty) {
-                            return "Fill The Input";
-                          }
-                          return null;
-                        },
-                        value: data["quantity"],
-                        label: "Quantity",
-                        onsave: (value) => onsave(index, "quantity", value),
-                      )),
+                    onvalid: (value) {
+                      if (value!.isEmpty) {
+                        return "Fill The Input";
+                      }
+                      return null;
+                    },
+                    value: data["quantity"],
+                    label: "Quantity",
+                    onsave: (value) => onsave(index, "quantity", value),
+                  )),
                 ],
               ),
             ),
@@ -126,10 +126,10 @@ class FormWidget extends StatelessWidget {
 class FormText extends StatelessWidget {
   const FormText(
       {Key? key,
-        required this.label,
-        required this.onsave,
-        this.onvalid,
-        required this.value})
+      required this.label,
+      required this.onsave,
+      this.onvalid,
+      required this.value})
       : super(key: key);
   final String label;
   final void Function(String?) onsave;

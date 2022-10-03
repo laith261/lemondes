@@ -30,14 +30,15 @@ class Store extends StatelessWidget {
           if (context.read<User>().user == null && location != "Local") {
             push(context, const Login());
           } else {
-            push(context,
+            push(
+              context,
               location == "Local"
                   ? Products(
-                store: store['name'],
-              )
+                      store: store['name'],
+                    )
                   : Forms(
-                store: store['name'],
-              ),
+                      store: store['name'],
+                    ),
             );
           }
         },
@@ -48,16 +49,16 @@ class Store extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 child: extension(store["stimg"]) == ".svg"
                     ? SvgPicture.network(
-                  "$link/uploads/${store["stimg"]}",
-                  placeholderBuilder: (context) => const Loading(),
-                  fit: BoxFit.cover,
-                  clipBehavior: Clip.none,
-                )
+                        "$link/uploads/${store["stimg"]}",
+                        placeholderBuilder: (context) => const Loading(),
+                        fit: BoxFit.cover,
+                        clipBehavior: Clip.none,
+                      )
                     : CachedNetworkImage(
-                  placeholder: (context, i) => const Loading(),
-                  imageUrl: "$link/uploads/${store["stimg"]}",
-                  fit: BoxFit.cover,
-                ),
+                        placeholder: (context, i) => const Loading(),
+                        imageUrl: "$link/uploads/${store["stimg"]}",
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             const SizedBox(
