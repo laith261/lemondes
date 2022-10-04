@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 
@@ -34,10 +33,7 @@ class CartWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CachedNetworkImage(
-                  placeholder: (context, i) => const Loading(),
-                  imageUrl: "$link/uploads/${item["img"]}",
-                  width: 50),
+              SizedBox(width: 50,child: ImageWidget(img: "$link/uploads/${item["img"]}",),),
               const SizedBox(
                 width: 10,
               ),

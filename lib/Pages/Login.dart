@@ -62,12 +62,6 @@ class _LoginState extends State<Login> {
                         save: (value) => login["pass"] = value!,
                         label: 'Password',
                         hideText: true,
-                        // valida: (value){
-                        //   if(value!=null || value!.isEmpty || value.length<6){
-                        //     return "Fill with 7 Char or more";
-                        //   }
-                        //   return null;
-                        // },
                       ),
                       const SizedBox(
                         height: 30,
@@ -112,18 +106,24 @@ class _LoginState extends State<Login> {
                         height: 20,
                       ),
                       TextButton(
-                          onPressed: () {
-                            push(context, const Reset());
-                          },
-                          child: const Text("Forgot Password?")),
+                        onPressed: () {
+                          push(context, const Reset());
+                        },
+                        child: const Text(
+                          "Forgot Password?"
+                        ),
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
                       TextButton(
-                          onPressed: () {
-                            push(context, const SingUp());
-                          },
-                          child: const Text("Don`t Have Account? SingUp"))
+                        onPressed: () {
+                          push(context, const SingUp());
+                        },
+                        child: const Text(
+                          "Don`t Have Account? SingUp"
+                        ),
+                      )
                     ],
                   ),
                 ),

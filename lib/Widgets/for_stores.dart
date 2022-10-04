@@ -1,13 +1,8 @@
-// ignore_for_file: depend_on_referenced_packages
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
 import 'package:lemondes/Pages/Login.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:path/path.dart';
 
 import '../Pages/Forms.dart';
 import '../Pages/Products.dart';
@@ -47,18 +42,7 @@ class Store extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: extension(store["stimg"]) == ".svg"
-                    ? SvgPicture.network(
-                        "$link/uploads/${store["stimg"]}",
-                        placeholderBuilder: (context) => const Loading(),
-                        fit: BoxFit.cover,
-                        clipBehavior: Clip.none,
-                      )
-                    : CachedNetworkImage(
-                        placeholder: (context, i) => const Loading(),
-                        imageUrl: "$link/uploads/${store["stimg"]}",
-                        fit: BoxFit.cover,
-                      ),
+                child:ImageWidget(img: "$link/uploads/${store["stimg"]}",fit: BoxFit.cover),
               ),
             ),
             const SizedBox(

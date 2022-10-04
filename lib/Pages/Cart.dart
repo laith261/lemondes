@@ -108,6 +108,7 @@ class _CartState extends State<Cart> {
           if (data.isEmpty) return const Empty();
           return Container(
             alignment: Alignment.topCenter,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: SizedBox(
               width: 300,
               child: ListView(

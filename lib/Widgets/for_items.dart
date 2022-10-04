@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'for_all.dart';
@@ -42,14 +40,7 @@ class ItemsWidget extends StatelessWidget {
                   : store != null
                       ? "$link/uploads/$store"
                       : "$link/uploads/logo.png";
-              if (url.substring(url.length - 3) == "svg") {
-                return SvgPicture.network(
-                  url,
-                  placeholderBuilder: (context) => const Loading(),
-                );
-              }
-              return CachedNetworkImage(
-                  placeholder: (context, i) => const Loading(), imageUrl: url);
+              return ImageWidget(img:url);
             }),
           ),
         ),

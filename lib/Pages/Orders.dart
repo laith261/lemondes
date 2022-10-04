@@ -43,8 +43,14 @@ class _OrdersState extends State<Orders> {
                     if (snap.hasData &&
                         (snap.data!["data"] as List).isNotEmpty) {
                       return ListView.builder(
-                        itemBuilder: (context, i) => Order(
-                          item: snap.data!["data"][i],
+                        itemBuilder: (context, i) => Hero(
+                          tag: "${snap.data!["data"][i]["oid"]}",
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Order(
+                              item: snap.data!["data"][i],
+                            ),
+                          ),
                         ),
                         itemCount: snap.data!["data"].length,
                       );

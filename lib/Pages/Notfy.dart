@@ -4,6 +4,7 @@ import 'package:lemondes/Widgets/for_all.dart';
 import 'package:provider/provider.dart';
 
 import '../Functions/User.dart';
+import 'Items.dart';
 
 class Notify extends StatefulWidget {
   const Notify({Key? key}) : super(key: key);
@@ -26,13 +27,13 @@ class _NotifyState extends State<Notify> {
               width: 300,
               child: FutureBuilder<Map>(
                 builder: (context, snap) {
-                  if (snap.hasData && snap.data!.isNotEmpty) {
+                  if (snap.hasData && snap.data!["data"].isNotEmpty) {
                     List data = snap.data!["data"];
                     return ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (context, i) => InkWell(
                         onTap: () {
-                          // push(context, Items(order: _data![i]["orid"]));
+                          push(context, Items(order: data[i]["orid"]));
                         },
                         child: Container(
                           padding: const EdgeInsets.all(5),
@@ -49,7 +50,7 @@ class _NotifyState extends State<Notify> {
                       ),
                     );
                   }
-                  if (snap.hasData && snap.data!.isEmpty) {
+                  if (snap.hasData && snap.data!["data"].isEmpty) {
                     return const Empty();
                   }
                   return const Loading();

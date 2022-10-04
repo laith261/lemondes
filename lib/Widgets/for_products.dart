@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:flutter/material.dart';
 
@@ -30,9 +29,7 @@ class ProductWidget extends StatelessWidget {
                 flex: 3,
                 child: Hero(
                     tag: data["id"],
-                    child: CachedNetworkImage(
-                        placeholder: (context, i) => const Loading(),
-                        imageUrl: "$link/uploads/${data["img"]}")),
+                    child: ImageWidget(img: "$link/uploads/${data["img"]}",),),
               ),
               Expanded(
                   flex: 1,

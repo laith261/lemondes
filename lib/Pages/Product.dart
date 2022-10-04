@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 
@@ -39,12 +38,11 @@ class Product extends StatelessWidget {
               elevation: 0,
               collapsedHeight: 200,
               flexibleSpace: Hero(
-                  tag: item["id"],
-                  child: CachedNetworkImage(
-                    placeholder: (context, i) => const Loading(),
-                    imageUrl: "$link/uploads/${item["img"]}",
-                    fit: BoxFit.contain,
-                  )),
+                tag: item["id"],
+                child: ImageWidget(
+                  img: "$link/uploads/${item["img"]}",
+                ),
+              ),
             ),
             SliverToBoxAdapter(
               child: Column(

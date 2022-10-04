@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../Functions/Functions.dart';
@@ -29,6 +28,7 @@ class Order extends StatelessWidget {
           Items(
             order: item["oid"],
             store: item["stimg"],
+            theOrder: item,
           ),
         ),
         title: Text(item["store"]),
@@ -36,9 +36,7 @@ class Order extends StatelessWidget {
           width: 60,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(3),
-            child: CachedNetworkImage(
-                placeholder: (context, i) => const Loading(),
-                imageUrl: "$link/uploads/${item["stimg"]}"),
+            child: ImageWidget(img: "$link/uploads/${item["stimg"]}",fit: BoxFit.cover,),
           ),
         ),
         trailing: Text("\$${item["price"]}"),
