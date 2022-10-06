@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lemondes/Functions/Functions.dart';
 
 import 'for_all.dart';
 
@@ -33,7 +32,12 @@ class CartWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(width: 50,child: ImageWidget(img: "$link/uploads/${item["img"]}",),),
+              SizedBox(
+                width: 50,
+                child: ImageWidget(
+                  img: item["img"],
+                ),
+              ),
               const SizedBox(
                 width: 10,
               ),

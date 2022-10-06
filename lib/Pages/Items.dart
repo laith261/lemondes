@@ -20,9 +20,10 @@ class _ItemsState extends State<Items> {
   Map? order;
   @override
   void initState() {
-    order=widget.theOrder;
+    order = widget.theOrder;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,17 +58,17 @@ class _ItemsState extends State<Items> {
                             ),
                           ),
                         ),
-                      if (order != null)
-                        const SizedBox(height: 20),
+                      if (order != null) const SizedBox(height: 20),
                       if (snap.hasData && snap.data!["data"].isNotEmpty)
                         for (var i = 0; i < snap.data!["data"].length; i++)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: ItemsWidget(
-                            store: widget.store,
-                            item: snap.data!["data"][i],
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: ItemsWidget(
+                              store: widget.store,
+                              item: snap.data!["data"][i],
+                            ),
                           ),
-                        ),
                       if (snap.hasData && (snap.data!["data"] as List).isEmpty)
                         const Empty(),
                       if (!snap.hasData) const Loading()

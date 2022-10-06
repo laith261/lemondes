@@ -42,7 +42,7 @@ class Store extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child:ImageWidget(img: "$link/uploads/${store["stimg"]}",fit: BoxFit.cover),
+                child: ImageWidget(img: store["stimg"], fit: BoxFit.cover),
               ),
             ),
             const SizedBox(

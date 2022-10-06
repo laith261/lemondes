@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../Functions/Functions.dart';
+
 // loading widget
 class Loading extends StatelessWidget {
   const Loading({Key? key}) : super(key: key);
@@ -51,24 +53,26 @@ class Empty extends StatelessWidget {
 }
 
 class ImageWidget extends StatelessWidget {
-  const ImageWidget({Key? key, required this.img, this.fit}) : super(key: key);
+  const ImageWidget({Key? key, required this.img, this.fit, this.size = 150})
+      : super(key: key);
   final String img;
   final BoxFit? fit;
+  final int? size;
 
   @override
   Widget build(BuildContext context) {
     return img.substring(img.length - 3) == "svg"
         ? SvgPicture.network(
-          img,
-          placeholderBuilder: (context) => const Loading(),
-          fit: fit??BoxFit.contain,
-      clipBehavior: Clip.hardEdge,
-        )
+            "$link/uploads/$img",
+            placeholderBuilder: (context) => const Loading(),
+            fit: fit ?? BoxFit.contain,
+            clipBehavior: Clip.hardEdge,
+          )
         : CachedNetworkImage(
-          placeholder: (context, i) => const Loading(),
-          imageUrl: img,
-          fit: fit,
-        );
+            placeholder: (context, i) => const Loading(),
+            imageUrl: "$link/imgs1.php?size=$size&img=$img",
+            fit: fit,
+          );
   }
 }
 

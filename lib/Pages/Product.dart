@@ -11,6 +11,13 @@ class Product extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    double height = (size.width * 0.4) > 350
+        ? 350
+        : (size.width * 0.4) < 150
+            ? 150
+            : (size.width * 0.4);
+
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: ColoredBox(
@@ -20,27 +27,25 @@ class Product extends StatelessWidget {
               addToCart(item);
               snakBar("Item Added To Cart", true, context);
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text("Add To Cart", style: TextStyle(fontSize: 20)),
-                SizedBox(
-                  width: 5,
-                ),
-                Icon(Icons.add_shopping_cart_rounded, size: 20),
-              ],
-            ),
+            child: Text("Add To Cart \$${item["price"]}",
+                style: const TextStyle(fontSize: 20)),
           ),
+        ),
+        appBar: AppBar(
+          title: const Text("Product"),
         ),
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               elevation: 0,
-              collapsedHeight: 200,
+              collapsedHeight: height,
               flexibleSpace: Hero(
                 tag: item["id"],
                 child: ImageWidget(
-                  img: "$link/uploads/${item["img"]}",
+                  img: item["img"],
+                  size: (height * 2).toInt(),
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),
@@ -59,10 +64,6 @@ class Product extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
-                        ),
-                        Text(
-                          "\$${item["price"]}",
-                          style: const TextStyle(fontSize: 18),
                         ),
                       ],
                     ),

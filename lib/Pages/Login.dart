@@ -109,9 +109,7 @@ class _LoginState extends State<Login> {
                         onPressed: () {
                           push(context, const Reset());
                         },
-                        child: const Text(
-                          "Forgot Password?"
-                        ),
+                        child: const Text("Forgot Password?"),
                       ),
                       const SizedBox(
                         height: 20,
@@ -120,9 +118,7 @@ class _LoginState extends State<Login> {
                         onPressed: () {
                           push(context, const SingUp());
                         },
-                        child: const Text(
-                          "Don`t Have Account? SingUp"
-                        ),
+                        child: const Text("Don`t Have Account? SingUp"),
                       )
                     ],
                   ),

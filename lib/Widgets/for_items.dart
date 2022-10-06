@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lemondes/Functions/Functions.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'for_all.dart';
 
@@ -36,11 +35,11 @@ class ItemsWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(3),
             child: Builder(builder: (context) {
               String url = item["type"] == "img"
-                  ? "$link/uploads/${item["link"]}"
+                  ? item["link"]
                   : store != null
-                      ? "$link/uploads/$store"
-                      : "$link/uploads/logo.png";
-              return ImageWidget(img:url);
+                      ? "$store"
+                      : "logo.png";
+              return ImageWidget(img: url);
             }),
           ),
         ),

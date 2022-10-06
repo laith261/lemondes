@@ -36,7 +36,10 @@ class Order extends StatelessWidget {
           width: 60,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(3),
-            child: ImageWidget(img: "$link/uploads/${item["stimg"]}",fit: BoxFit.cover,),
+            child: ImageWidget(
+              img: item["stimg"],
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         trailing: Text("\$${item["price"]}"),

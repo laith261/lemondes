@@ -28,8 +28,9 @@ class ProductWidget extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Hero(
-                    tag: data["id"],
-                    child: ImageWidget(img: "$link/uploads/${data["img"]}",),),
+                  tag: data["id"],
+                  child: ImageWidget(img: data["img"]),
+                ),
               ),
               Expanded(
                   flex: 1,
