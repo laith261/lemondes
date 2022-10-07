@@ -53,6 +53,7 @@ class _ItemsState extends State<Items> {
                           tag: order!["oid"],
                           child: Material(
                             color: Colors.transparent,
+                            elevation: 2,
                             child: Order(
                               item: order!,
                             ),
@@ -64,7 +65,7 @@ class _ItemsState extends State<Items> {
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: ItemsWidget(
+                            child: Item(
                               store: widget.store,
                               item: snap.data!["data"][i],
                             ),

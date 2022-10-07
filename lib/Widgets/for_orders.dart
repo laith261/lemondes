@@ -13,15 +13,6 @@ class Order extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.symmetric(vertical: 7),
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                color: Theme.of(context).colorScheme.secondary,
-                blurRadius: 20,
-                spreadRadius: -15),
-          ]),
       child: ListTile(
         onTap: () => push(
           context,

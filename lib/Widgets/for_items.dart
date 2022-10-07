@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'for_all.dart';
 
-class ItemsWidget extends StatelessWidget {
-  const ItemsWidget({Key? key, required this.item, this.store})
+class Item extends StatelessWidget {
+  const Item({Key? key, required this.item, this.store})
       : super(key: key);
   final Map item;
   final String? store;
@@ -16,15 +16,6 @@ class ItemsWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.symmetric(vertical: 7),
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                color: Theme.of(context).colorScheme.secondary,
-                blurRadius: 20,
-                spreadRadius: -15),
-          ]),
       child: ListTile(
         onTap: item["type"] == "img"
             ? null
