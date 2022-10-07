@@ -143,3 +143,34 @@ class MyInput extends StatelessWidget {
     );
   }
 }
+
+class BottomButton extends StatelessWidget {
+  const BottomButton({Key? key, required this.function, required this.text})
+      : super(key: key);
+  final void Function()? function;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: function,
+      child: Container(
+        alignment: Alignment.center,
+        margin: const EdgeInsets.all(10),
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+          ),
+        ),
+      ),
+    );
+  }
+}

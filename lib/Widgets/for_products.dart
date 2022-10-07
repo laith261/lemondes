@@ -82,51 +82,56 @@ class Filters extends StatelessWidget {
       color: Theme.of(context).scaffoldBackgroundColor,
       child: SizedBox(
         width: 300,
-        child: SingleChildScrollView(
-          child: StatefulBuilder(builder: (context, set) {
-            return Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: () => set(() {
-                              resetFilter();
-                            }),
-                        icon: const Icon(Icons.unpublished_rounded)),
-                    ElevatedButton(
-                        onPressed: () => gitFilter(),
-                        child: const Text("Filter"))
-                  ],
+        child: StatefulBuilder(builder: (context, set) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () => set(() {
+                            resetFilter();
+                          }),
+                      icon: const Icon(Icons.unpublished_rounded)),
+                  ElevatedButton(
+                      onPressed: () => gitFilter(), child: const Text("Filter"))
+                ],
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      FiltersBox(
+                        key: const ValueKey("f1"),
+                        isIn: isIn,
+                        data: types,
+                        name: "Types",
+                        add: add,
+                        remove: remove,
+                      ),
+                      FiltersBox(
+                        key: const ValueKey("f2"),
+                        isIn: isIn,
+                        data: sizes,
+                        name: "Sizes",
+                        add: add,
+                        remove: remove,
+                      ),
+                      FiltersBox(
+                        key: const ValueKey("f3"),
+                        isIn: isIn,
+                        data: colors,
+                        name: "Colors",
+                        add: add,
+                        remove: remove,
+                      ),
+                    ],
+                  ),
                 ),
-                FiltersBox(
-                  key: const ValueKey("f1"),
-                  isIn: isIn,
-                  data: types,
-                  name: "Types",
-                  add: add,
-                  remove: remove,
-                ),
-                FiltersBox(
-                  key: const ValueKey("f2"),
-                  isIn: isIn,
-                  data: sizes,
-                  name: "Sizes",
-                  add: add,
-                  remove: remove,
-                ),
-                FiltersBox(
-                  key: const ValueKey("f3"),
-                  isIn: isIn,
-                  data: colors,
-                  name: "Colors",
-                  add: add,
-                  remove: remove,
-                )
-              ],
-            );
-          }),
-        ),
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

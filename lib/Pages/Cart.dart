@@ -73,10 +73,9 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: ColoredBox(
-          color: Theme.of(context).colorScheme.secondary,
-          child: ElevatedButton(
-            onPressed: total == 0
+        bottomNavigationBar: BottomButton(
+            text: "Check Out Total:\$$total",
+            function: total == 0
                 ? null
                 : () {
                     https.postMap({
@@ -92,15 +91,7 @@ class _CartState extends State<Cart> {
                       }
                       snakBar(value["mess"], value["st"], context);
                     });
-                  },
-            child: Text(
-              "Check Out Total : \$$total",
-              style: const TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
-        ),
+                  }),
         appBar: AppBar(
           title: const Text("Cart"),
         ),

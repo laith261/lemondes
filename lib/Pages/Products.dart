@@ -33,67 +33,79 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
     double count =
         (MediaQuery.of(context).size.width / 275).floorToDouble().toInt() + 1;
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            push(
-                context,
-                context.read<User>().user != null
-                    ? const Cart()
-                    : const Login());
-          },
-          child: const Icon(Icons.shopping_cart_rounded),
-        ),
-        appBar: AppBar(
-          title: Text(widget.store),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  setState(() => isShow = !isShow);
-                },
-                icon: const Icon(Icons.filter_alt_rounded)),
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Stack(
-            children: [
-              Visibility(
-                visible: !isShow,
-                child: FutureBuilder<Map>(
-                  builder: (context, snap) {
-                    if (snap.hasData &&
-                        (snap.data!["data"] as List).isNotEmpty) {
-                      return GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: count.toInt()),
-                        itemBuilder: (context, i) => ProductWidget(
-                          data: snap.data!["data"][i],
-                        ),
-                        itemCount: snap.data!["data"].length,
-                      );
-                    } else if (snap.hasData &&
-                        (snap.data!["data"] as List).isEmpty) {
-                      return const Empty();
-                    }
-                    return const Loading();
+    return WillPopScope(
+      onWillPop: () async {
+        if (isShow) {
+          setState(() => isShow = false);
+          return false;
+        }
+        return true;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButton: isShow
+              ? null
+              : FloatingActionButton(
+                  onPressed: () {
+                    push(
+                        context,
+                        context.read<User>().user != null
+                            ? const Cart()
+                            : const Login());
                   },
-                  future: _data,
+                  child: const Icon(Icons.shopping_cart_rounded),
                 ),
-              ),
-              Visibility(
-                visible: isShow,
-                maintainState: true,
-                child: Filters(
-                    gitFilter: gitFilter,
-                    resetFilter: resetFilter,
-                    key: const ValueKey("filters"),
-                    add: addFilter,
-                    remove: removeFilter,
-                    isIn: isIn),
-              )
+          appBar: AppBar(
+            title: Text(widget.store),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    setState(() => isShow = !isShow);
+                  },
+                  icon: const Icon(Icons.filter_alt_rounded)),
             ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Stack(
+              children: [
+                Visibility(
+                  visible: !isShow,
+                  child: FutureBuilder<Map>(
+                    builder: (context, snap) {
+                      if (snap.hasData &&
+                          (snap.data!["data"] as List).isNotEmpty) {
+                        return GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: count.toInt()),
+                          itemBuilder: (context, i) => ProductWidget(
+                            data: snap.data!["data"][i],
+                          ),
+                          itemCount: snap.data!["data"].length,
+                        );
+                      } else if (snap.hasData &&
+                          (snap.data!["data"] as List).isEmpty) {
+                        return const Empty();
+                      }
+                      return const Loading();
+                    },
+                    future: _data,
+                  ),
+                ),
+                Visibility(
+                  visible: isShow,
+                  maintainState: true,
+                  child: Filters(
+                      gitFilter: gitFilter,
+                      resetFilter: resetFilter,
+                      key: const ValueKey("filters"),
+                      add: addFilter,
+                      remove: removeFilter,
+                      isIn: isIn),
+                )
+              ],
+            ),
           ),
         ),
       ),

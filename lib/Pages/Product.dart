@@ -13,16 +13,12 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: ColoredBox(
-          color: Theme.of(context).colorScheme.secondary,
-          child: ElevatedButton(
-            onPressed: () {
-              addToCart(item);
-              snakBar("Item Added To Cart", true, context);
-            },
-            child: Text("Add To Cart \$${item["price"]}",
-                style: const TextStyle(fontSize: 20)),
-          ),
+        bottomNavigationBar: BottomButton(
+          function: () {
+            addToCart(item);
+            snakBar("Item Added To Cart", true, context);
+          },
+          text: "Add To Cart:\$${item["price"]}",
         ),
         appBar: AppBar(
           title: const Text("Product"),

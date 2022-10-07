@@ -26,16 +26,6 @@ class DrawerWidget extends StatelessWidget {
                 child: Image.asset("assets/images/logo.png"),
               ),
             ),
-            DrawerButton(
-              icon: Icons.currency_exchange,
-              text: "Currency Exchange",
-              func: () => push(context, const Currency()),
-            ),
-            DrawerButton(
-              icon: Icons.link,
-              text: "Link",
-              func: () => push(context, const LinkPage()),
-            ),
             // show if user logout
             Selector<User, Map?>(
               selector: (_, user) => user.user,
@@ -51,10 +41,25 @@ class DrawerWidget extends StatelessWidget {
                           push(context, const Login());
                         },
                       ),
+                      DrawerButton(
+                        icon: Icons.shopping_cart_rounded,
+                        text: "Cart",
+                        func: () => push(context, const Cart()),
+                      ),
                     ],
                   ),
                 );
               },
+            ),
+            DrawerButton(
+              icon: Icons.currency_exchange,
+              text: "Currency Exchange",
+              func: () => push(context, const Currency()),
+            ),
+            DrawerButton(
+              icon: Icons.link,
+              text: "Link",
+              func: () => push(context, const LinkPage()),
             ),
             // show if user login
             Selector<User, Map?>(
