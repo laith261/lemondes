@@ -21,17 +21,20 @@ class ProductWidget extends StatelessWidget {
             push(context, Product(item: data));
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
+        child: Container(
+          margin: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(7),
+          decoration: BoxDecoration(
+          color: Colors.white.withOpacity(.5),
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Column(
             children: [
               Expanded(
                 flex: 3,
-                child: Hero(
-                  tag: data["id"],
-                  child: ImageWidget(img: data["img"]),
-                ),
+                child: Hero(tag:data["id"],child: ImageWidget(img:data["img"],size: 150,fit: BoxFit.cover,)),
               ),
+              const SizedBox(height: 5,),
               Expanded(
                   flex: 1,
                   child: Text(
