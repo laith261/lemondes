@@ -25,16 +25,24 @@ class ProductWidget extends StatelessWidget {
           margin: const EdgeInsets.all(5),
           padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
-          color: Colors.white.withOpacity(.5),
+            color: Colors.white.withOpacity(.5),
             borderRadius: BorderRadius.circular(5),
           ),
           child: Column(
             children: [
               Expanded(
                 flex: 3,
-                child: Hero(tag:data["id"],child: ImageWidget(img:data["img"],size: 150,fit: BoxFit.cover,)),
+                child: Hero(
+                    tag: data["id"],
+                    child: ImageWidget(
+                      img: data["img"],
+                      size: 300,
+                      fit: BoxFit.cover,
+                    )),
               ),
-              const SizedBox(height: 5,),
+              const SizedBox(
+                height: 5,
+              ),
               Expanded(
                   flex: 1,
                   child: Text(

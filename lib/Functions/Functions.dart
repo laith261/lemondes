@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Http.dart';
@@ -62,4 +64,18 @@ void backgroundMessage(context) {
       push(context, Items(order: event.data["order"]));
     }
   });
+}
+
+iosPrecession() async {
+  if (Platform.isIOS) {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  }
 }

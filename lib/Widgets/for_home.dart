@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
 import 'package:lemondes/Pages/Account.dart';
+import 'package:lemondes/Pages/Cart.dart';
 import 'package:lemondes/Pages/Orders.dart';
 import 'package:provider/provider.dart';
 
@@ -72,6 +73,11 @@ class DrawerWidget extends StatelessWidget {
                         icon: Icons.view_list_rounded,
                         text: "My Orders",
                         func: () => push(context, const Orders()),
+                      ),
+                      DrawerButton(
+                        icon: Icons.shopping_cart_rounded,
+                        text: "Cart",
+                        func: () => push(context, const Cart()),
                       ),
                       DrawerButton(
                         icon: Icons.logout_rounded,

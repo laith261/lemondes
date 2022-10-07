@@ -11,12 +11,6 @@ class Product extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size;
-    // double height = (size.width * 0.4) > 350
-    //     ? 350
-    //     : (size.width * 0.4) < 150
-    //         ? 150
-    //         : (size.width * 0.4);
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: ColoredBox(
@@ -38,13 +32,15 @@ class Product extends StatelessWidget {
             SliverAppBar(
               automaticallyImplyLeading: false,
               elevation: 0,
-              collapsedHeight: 300,
-              flexibleSpace: Hero(
-                tag: item["id"],
-                child: ImageWidget(
-                  img: item["img"],
-                  size: 350,
-                  fit: BoxFit.fitHeight,
+              collapsedHeight: 175,
+              flexibleSpace: Center(
+                child: Hero(
+                  tag: item["id"],
+                  child: ImageWidget(
+                    img: item["img"],
+                    size: 300,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
             ),

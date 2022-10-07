@@ -32,7 +32,7 @@ class _ProductsState extends State<Products> {
   @override
   Widget build(BuildContext context) {
     double count =
-        (MediaQuery.of(context).size.width / 250).floorToDouble().toInt() + 1;
+        (MediaQuery.of(context).size.width / 275).floorToDouble().toInt() + 1;
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -104,10 +104,8 @@ class _ProductsState extends State<Products> {
   void addFilter(String name, String value) => filter[name]!.add(value);
   void removeFilter(String name, String value) => filter[name]!.remove(value);
   void resetFilter() => filter = {"types": [], "sizes": [], "colors": []};
-  void getItems() {
-    _data =
-        https.postMap({"local": widget.store, "filter": jsonEncode(filter)});
-  }
+  void getItems() => _data =
+      https.postMap({"local": widget.store, "filter": jsonEncode(filter)});
 
   void gitFilter() {
     setState(() {
