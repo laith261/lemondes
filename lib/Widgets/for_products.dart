@@ -21,36 +21,40 @@ class ProductWidget extends StatelessWidget {
             push(context, Product(item: data));
           }
         },
-        child: Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.all(7),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.5),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Hero(
-                    tag: data["id"],
+        child: Hero(
+          tag:data["id"]+"con",
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              margin: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(7),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(.5),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 3,
                     child: ImageWidget(
                       img: data["img"],
                       size: 300,
                       fit: BoxFit.cover,
-                    )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: Text(
+                        data["name"],
+                        overflow: TextOverflow.ellipsis,
+                      )),
+                  Expanded(flex: 1, child: Text("\$${data["price"]}")),
+                ],
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Expanded(
-                  flex: 1,
-                  child: Text(
-                    data["name"],
-                    overflow: TextOverflow.ellipsis,
-                  )),
-              Expanded(flex: 1, child: Text("\$${data["price"]}")),
-            ],
+            ),
           ),
         ),
       ),

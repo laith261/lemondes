@@ -20,58 +20,57 @@ class Product extends StatelessWidget {
           },
           text: "Add To Cart:\$${item["price"]}",
         ),
-        appBar: AppBar(
-          title: const Text("Product"),
-        ),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              elevation: 0,
-              collapsedHeight: 175,
-              flexibleSpace: Center(
-                child: Hero(
-                  tag: item["id"],
-                  child: ImageWidget(
-                    img: item["img"],
-                    size: 300,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item["name"],
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ],
+        extendBody: true,
+        appBar: AppBar(title: const Text("Product")),
+        body: SizedBox.expand(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                Hero(
+                  tag: item["id"] + "con",
+                  child: Container(
+                    width: 300,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(.5),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: ImageWidget(
+                      img: item["img"],
+                      size: 400,
                     ),
                   ),
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.black,
+                ),
+                Text(
+                  item["name"],
+                  style: const TextStyle(
+                    fontSize: 25,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Text(item["detail"],
-                        style: const TextStyle(fontSize: 18)),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  "\$${item["price"]}",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black.withOpacity(.70),
                   ),
-                ],
-              ),
-            )
-          ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  item["detail"],
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black.withOpacity(.70),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
