@@ -6,33 +6,20 @@ class LocalData {
   LocalData(this.prefs);
 
   // get data from local storage
-  Future<String?> get(String name) async => prefs.getString(name);
+  String? get(String name) => prefs.getString(name);
 
   // get user data from local storage
-  Future<Map?> getUser() async {
-    var data = prefs.getString("user");
-    return data == null ? null : jsonDecode(data);
-  }
+  Map? getUser() => get("user") == null ? null : jsonDecode(get("user")!);
 
   // set data from local storage
-  Future<void> set(String name, String content) async {
-    prefs.setString(name, content);
-  }
+  void set(String name, String content) => prefs.setString(name, content);
 
   //delete local data
-  Future<void> delete(String name) async {
-    prefs.remove(name);
-  }
+  void delete(String name) => prefs.remove(name);
 
-  // ceck if user login
-  Future<bool> userCheck(Function login) async {
-    bool t = false;
-    await getUser().then((value) {
-      if (value != null) {
-        login(value);
-        t = true;
-      }
-    });
-    return t;
+  // check if user login
+  bool userCheck(Function login) {
+    if (getUser() != null) login(getUser());
+    return getUser() != null;
   }
 }

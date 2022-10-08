@@ -22,14 +22,13 @@ class _AccountState extends State<Account> {
   @override
   void initState() {
     super.initState();
-    local!.userCheck(context.read<User>().login).then((value) {
-      if (!value) {
-        Navigator.pop(context);
-      }
-    });
-    data = https.postMap({
-      "udata": context.read<User>().user!["uid"],
-    });
+    if (!local!.userCheck(context.read<User>().login)) {
+      Navigator.pop(context);
+    } else {
+      data = https.postMap({
+        "udata": context.read<User>().user!["uid"],
+      });
+    }
   }
 
   @override

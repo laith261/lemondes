@@ -26,12 +26,11 @@ class _CartState extends State<Cart> {
     total = 0;
     widgets = [];
     length = 0;
-    local!.get("cart").then((value) {
-      Map holder = value == null ? {} : jsonDecode(value);
-      data = holder.values.toList();
-      length = data.length;
-      loop().then((value) => setState(() {}));
-    });
+    Map holder =
+        local!.get("cart") == null ? {} : jsonDecode(local!.get("cart")!);
+    data = holder.values.toList();
+    length = data.length;
+    loop().then((value) => setState(() {}));
   }
 
   Future<void> loop() async {
@@ -46,21 +45,17 @@ class _CartState extends State<Cart> {
   }
 
   void delete(String id) {
-    local!.get("cart").then((value) {
-      Map tdata = jsonDecode(value!);
-      tdata.remove(id);
-      local!.set("cart", jsonEncode(tdata));
-      getCart();
-    });
+    Map tdata = jsonDecode(local!.get("cart")!);
+    tdata.remove(id);
+    local!.set("cart", jsonEncode(tdata));
+    getCart();
   }
 
   void change(String id, int opr) {
-    local!.get("cart").then((value) {
-      Map tdata = jsonDecode(value!);
-      tdata[id]["qun"] += opr;
-      local!.set("cart", jsonEncode(tdata));
-      getCart();
-    });
+    Map tdata = jsonDecode(local!.get("cart")!);
+    tdata[id]["qun"] += opr;
+    local!.set("cart", jsonEncode(tdata));
+    getCart();
   }
 
   @override
@@ -85,9 +80,8 @@ class _CartState extends State<Cart> {
                       })
                     }).then((value) {
                       if (value["st"]) {
-                        local!.delete("cart").then((value) {
-                          getCart();
-                        });
+                        local!.delete("cart");
+                        getCart();
                       }
                       snakBar(value["mess"], value["st"], context);
                     });

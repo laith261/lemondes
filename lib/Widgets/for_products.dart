@@ -22,7 +22,7 @@ class ProductWidget extends StatelessWidget {
           }
         },
         child: Hero(
-          tag:data["id"]+"con",
+          tag: data["id"] + "con",
           child: Material(
             color: Colors.transparent,
             child: Container(

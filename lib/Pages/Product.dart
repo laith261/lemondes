@@ -77,22 +77,21 @@ class Product extends StatelessWidget {
   }
 
   void addToCart(Map item) {
-    local!.get("cart").then((value) {
-      Map data = value == null ? {} : jsonDecode(value);
-      if (data.containsKey(item["id"])) {
-        data[item["id"]]!["qun"]++;
-      } else {
-        data[item["id"]] = {
-          "id": item["id"],
-          "name": item["name"],
-          "price": item["price"],
-          "qun": 1,
-          "img": item["img"],
-          "detail": item["detail"],
-          "store": item["store"],
-        };
-      }
-      local!.set("cart", jsonEncode(data));
-    });
+    Map data =
+        local!.get("cart") == null ? {} : jsonDecode(local!.get("cart")!);
+    if (data.containsKey(item["id"])) {
+      data[item["id"]]!["qun"]++;
+    } else {
+      data[item["id"]] = {
+        "id": item["id"],
+        "name": item["name"],
+        "price": item["price"],
+        "qun": 1,
+        "img": item["img"],
+        "detail": item["detail"],
+        "store": item["store"],
+      };
+    }
+    local!.set("cart", jsonEncode(data));
   }
 }

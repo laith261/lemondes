@@ -3,8 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'for_all.dart';
 
 class Item extends StatelessWidget {
-  const Item({Key? key, required this.item, this.store})
-      : super(key: key);
+  const Item({Key? key, required this.item, this.store}) : super(key: key);
   final Map item;
   final String? store;
 
