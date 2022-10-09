@@ -103,7 +103,7 @@ class _ProductState extends State<Product> {
 
   void addToCart(Map item) {
     Map data =
-        local!.get("cart") == null ? {"total":0,"items":{}} : jsonDecode(local!.get("cart")!);
+        local.get("cart") == null ? {"total":0,"items":{}} : jsonDecode(local.get("cart")!);
     if (data["items"].containsKey(item["id"])) {
       data["items"][item["id"]]!["qun"]+=count;
     } else {
@@ -118,6 +118,6 @@ class _ProductState extends State<Product> {
       };
     }
     data["total"]+=count*int.parse(item["price"]);
-    local!.set("cart", jsonEncode(data));
+    local.set("cart", jsonEncode(data));
   }
 }

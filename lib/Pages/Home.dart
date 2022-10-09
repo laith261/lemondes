@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     openMessage(context);
     foregroundMessage(context);
     backgroundMessage(context);
-    local?.userCheck(context.read<User>().login);
+    local.userCheck(context.read<User>().login);
   }
 
   @override

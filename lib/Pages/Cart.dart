@@ -23,30 +23,30 @@ class _CartState extends State<Cart> {
   void getCart() {
     data = [];
     length = 0;
-    Map holder = local!.get("cart") == null
+    Map holder = local.get("cart") == null
         ? {"total": 0, "items": {}}
-        : jsonDecode(local!.get("cart")!);
+        : jsonDecode(local.get("cart")!);
     data = holder["items"].values.toList();
     length = data.length;
-    total = holder["total"];
+    total = double.parse("${holder["total"]}");
     setState(() {});
   }
 
   void delete(String id) {
-    Map tData = jsonDecode(local!.get("cart")!);
+    Map tData = jsonDecode(local.get("cart")!);
     print("$id $tData");
     tData["total"] -=
         tData["items"][id]["qun"] * double.parse(tData["items"][id]["price"]);
     tData["items"].remove(id);
-    local!.set("cart", jsonEncode(tData));
+    local.set("cart", jsonEncode(tData));
     getCart();
   }
 
   void change(String id, int opr) {
-    Map tData = jsonDecode(local!.get("cart")!);
+    Map tData = jsonDecode(local.get("cart")!);
     tData["items"][id]["qun"] += opr;
     tData["total"] += double.parse(tData["items"][id]["price"]) * opr;
-    local!.set("cart", jsonEncode(tData));
+    local.set("cart", jsonEncode(tData));
     getCart();
   }
 
@@ -72,7 +72,7 @@ class _CartState extends State<Cart> {
                       })
                     }).then((value) {
                       if (value["st"]) {
-                        local!.delete("cart");
+                        local.delete("cart");
                         getCart();
                       }
                       snakBar(value["mess"], value["st"], context);

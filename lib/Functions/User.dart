@@ -8,7 +8,7 @@ class User extends ChangeNotifier {
   Map? user;
 
   Future<void> login(Map data) async {
-    local?.set("user", jsonEncode(data));
+    local.set("user", jsonEncode(data));
     user = data;
     await FirebaseMessaging.instance
         .subscribeToTopic(data["uid"].toString().replaceAll("=", ""));
@@ -18,7 +18,7 @@ class User extends ChangeNotifier {
   Future<void> logout() async {
     await FirebaseMessaging.instance
         .unsubscribeFromTopic(user!["uid"].toString().replaceAll("=", ""));
-    local?.delete("user");
+    local.delete("user");
     user = null;
     notifyListeners();
   }

@@ -11,9 +11,9 @@ import 'Pages/Home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  local = LocalData(await SharedPreferences.getInstance());
   await Firebase.initializeApp();
   iosPrecession();
-  local = LocalData(await SharedPreferences.getInstance());
   runApp(
     MultiProvider(
       providers: [
@@ -39,8 +39,8 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    local!.userCheck(context.read<User>().setLogin);
-    link = local!.get("link") ?? link;
+    local.userCheck(context.read<User>().setLogin);
+    link = local.get("link") ?? link;
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,

@@ -11,7 +11,7 @@ import '../Pages/Items.dart';
 String link = "https://lemondes.iq";
 
 Http https = Http();
-LocalData? local;
+late LocalData local;
 
 // Navigator Push
 void push(context, Widget widget) {

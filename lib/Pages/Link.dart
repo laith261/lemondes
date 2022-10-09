@@ -51,7 +51,7 @@ class _LinkPageState extends State<LinkPage> {
                 ElevatedButton(
                     onPressed: () {
                       link = theLink.text;
-                      local!.set("link", link);
+                      local.set("link", link);
                       snakBar("done", true, context);
                       setState(() {});
                     },
