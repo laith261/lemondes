@@ -22,4 +22,8 @@ class User extends ChangeNotifier {
     user = null;
     notifyListeners();
   }
+
+  void setLogin(Map data){
+    user = data;
+  }
 }

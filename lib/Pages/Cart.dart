@@ -17,44 +17,36 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   List data = [];
-  List<Widget> widgets = [];
   int length = 0;
   double total = 0;
 
   void getCart() {
     data = [];
-    total = 0;
-    widgets = [];
     length = 0;
-    Map holder =
-        local!.get("cart") == null ? {} : jsonDecode(local!.get("cart")!);
-    data = holder.values.toList();
+    Map holder = local!.get("cart") == null
+        ? {"total": 0, "items": {}}
+        : jsonDecode(local!.get("cart")!);
+    data = holder["items"].values.toList();
     length = data.length;
-    loop().then((value) => setState(() {}));
-  }
-
-  Future<void> loop() async {
-    for (var i = 0; i < length; i++) {
-      total += data[i]["qun"] * double.parse(data[i]["price"]);
-      widgets.add(CartWidget(
-        item: data[i],
-        change: change,
-        delete: delete,
-      ));
-    }
+    total = holder["total"];
+    setState(() {});
   }
 
   void delete(String id) {
-    Map tdata = jsonDecode(local!.get("cart")!);
-    tdata.remove(id);
-    local!.set("cart", jsonEncode(tdata));
+    Map tData = jsonDecode(local!.get("cart")!);
+    print("$id $tData");
+    tData["total"] -=
+        tData["items"][id]["qun"] * double.parse(tData["items"][id]["price"]);
+    tData["items"].remove(id);
+    local!.set("cart", jsonEncode(tData));
     getCart();
   }
 
   void change(String id, int opr) {
-    Map tdata = jsonDecode(local!.get("cart")!);
-    tdata[id]["qun"] += opr;
-    local!.set("cart", jsonEncode(tdata));
+    Map tData = jsonDecode(local!.get("cart")!);
+    tData["items"][id]["qun"] += opr;
+    tData["total"] += double.parse(tData["items"][id]["price"]) * opr;
+    local!.set("cart", jsonEncode(tData));
     getCart();
   }
 
@@ -68,8 +60,8 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomButton(
-            text: "Check Out Total:\$$total",
+        bottomNavigationBar:total==0?null:BottomButton(
+            text: "Check Out Total : \$$total",
             function: total == 0
                 ? null
                 : () {
@@ -96,8 +88,15 @@ class _CartState extends State<Cart> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: SizedBox(
               width: 300,
-              child: ListView(
-                children: widgets,
+              child: ListView.builder(
+                itemCount: length,
+                itemBuilder: (context, i) {
+                  return CartWidget(
+                    item: data[i],
+                    change: change,
+                    delete: delete,
+                  );
+                },
               ),
             ),
           );

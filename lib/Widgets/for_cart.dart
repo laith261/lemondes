@@ -58,16 +58,13 @@ class CartWidget extends StatelessWidget {
                     Text("\$${item["price"]}"),
                     Row(
                       children: [
-                        IconButton(
-                            onPressed: item["qun"] == 1
-                                ? null
-                                : () => change(item['id'], -1),
-                            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-                        Text("${item["qun"]}",
-                            style: const TextStyle(fontSize: 18)),
-                        IconButton(
-                            onPressed: () => change(item['id'], 1),
-                            icon: const Icon(Icons.arrow_forward_ios_rounded)),
+                        Count(
+                          count: item["qun"],
+                          increase: () => change(item['id'], 1),
+                          decrease: item["qun"] == 1
+                              ? null
+                              : () => change(item['id'], -1),
+                        ),
                       ],
                     ),
                   ],

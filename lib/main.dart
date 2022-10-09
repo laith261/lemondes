@@ -39,14 +39,16 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    link = local?.get("link") ?? link;
-    local?.userCheck(context.read<User>().login);
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => const Home(),
-      ),
-    );
+    local!.userCheck(context.read<User>().setLogin);
+    link = local!.get("link") ?? link;
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const Home(),
+        ),
+      );
+    });
   }
 
   @override

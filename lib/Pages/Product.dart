@@ -5,20 +5,45 @@ import 'package:lemondes/Functions/Functions.dart';
 
 import '../Widgets/for_all.dart';
 
-class Product extends StatelessWidget {
+class Product extends StatefulWidget {
   const Product({Key? key, required this.item}) : super(key: key);
   final Map item;
+
+  @override
+  State<Product> createState() => _ProductState();
+}
+
+class _ProductState extends State<Product> {
+  int count = 1;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomButton(
-          function: () {
-            addToCart(item);
-            snakBar("Item Added To Cart", true, context);
-          },
-          text: "Add To Cart:\$${item["price"]}",
+        bottomNavigationBar: Row(
+          children: [
+            Expanded(
+              child: StatefulBuilder(
+                builder: (context, set) {
+                  return Count(
+                    count: count,
+                    increase: () => set(() => count += 1),
+                    decrease: count == 0 ? null : () => set(() => count += -1),
+                  );
+                },
+              ),
+            ),
+            Expanded(
+              child: BottomButton(
+                function: () {
+                  addToCart(widget.item);
+                  snakBar("Item Added To Cart", true, context);
+                },
+                text: "Add To Cart : \$${widget.item["price"]}",
+                size: 15,
+              ),
+            ),
+          ],
         ),
         extendBody: true,
         appBar: AppBar(title: const Text("Product")),
@@ -28,7 +53,7 @@ class Product extends StatelessWidget {
             child: ListView(
               children: [
                 Hero(
-                  tag: item["id"] + "con",
+                  tag: widget.item["id"] + "con",
                   child: Container(
                     width: 300,
                     height: 300,
@@ -37,13 +62,13 @@ class Product extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ImageWidget(
-                      img: item["img"],
+                      img: widget.item["img"],
                       size: 400,
                     ),
                   ),
                 ),
                 Text(
-                  item["name"],
+                  widget.item["name"],
                   style: const TextStyle(
                     fontSize: 25,
                   ),
@@ -52,7 +77,7 @@ class Product extends StatelessWidget {
                   height: 7,
                 ),
                 Text(
-                  "\$${item["price"]}",
+                  "\$${widget.item["price"]}",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black.withOpacity(.70),
@@ -62,7 +87,7 @@ class Product extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  item["detail"],
+                  widget.item["detail"],
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black.withOpacity(.70),
@@ -78,20 +103,21 @@ class Product extends StatelessWidget {
 
   void addToCart(Map item) {
     Map data =
-        local!.get("cart") == null ? {} : jsonDecode(local!.get("cart")!);
-    if (data.containsKey(item["id"])) {
-      data[item["id"]]!["qun"]++;
+        local!.get("cart") == null ? {"total":0,"items":{}} : jsonDecode(local!.get("cart")!);
+    if (data["items"].containsKey(item["id"])) {
+      data["items"][item["id"]]!["qun"]+=count;
     } else {
-      data[item["id"]] = {
+      data["items"][item["id"]] = {
         "id": item["id"],
         "name": item["name"],
         "price": item["price"],
-        "qun": 1,
+        "qun": count,
         "img": item["img"],
         "detail": item["detail"],
         "store": item["store"],
       };
     }
+    data["total"]+=count*int.parse(item["price"]);
     local!.set("cart", jsonEncode(data));
   }
 }

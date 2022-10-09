@@ -145,10 +145,12 @@ class MyInput extends StatelessWidget {
 }
 
 class BottomButton extends StatelessWidget {
-  const BottomButton({Key? key, required this.function, required this.text})
+  const BottomButton(
+      {Key? key, required this.function, required this.text, this.size = 17})
       : super(key: key);
   final void Function()? function;
   final String text;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -165,12 +167,40 @@ class BottomButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 17,
+            fontSize: size,
           ),
         ),
       ),
+    );
+  }
+}
+
+class Count extends StatelessWidget {
+  const Count(
+      {Key? key,
+      required this.count,
+      required this.increase,
+      required this.decrease})
+      : super(key: key);
+  final int count;
+  final Function()? increase;
+  final Function()? decrease;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        IconButton(
+            onPressed: decrease,
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+        Text("$count", style: const TextStyle(fontSize: 18)),
+        IconButton(
+            onPressed: increase,
+            icon: const Icon(Icons.arrow_forward_ios_rounded)),
+      ],
     );
   }
 }

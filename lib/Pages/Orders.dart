@@ -16,7 +16,7 @@ class _OrdersState extends State<Orders> {
   @override
   void initState() {
     super.initState();
-    if (!local!.userCheck(context.read<User>().login)) {
+    if (!local!.userCheck(context.read<User>().setLogin)) {
       Navigator.pop(context);
     }
   }
