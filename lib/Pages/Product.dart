@@ -39,7 +39,7 @@ class _ProductState extends State<Product> {
                   addToCart(widget.item);
                   snakBar("Item Added To Cart", true, context);
                 },
-                text: "Add To Cart : \$${widget.item["price"]}",
+                text: "Add To Cart",
                 size: 15,
               ),
             ),
@@ -88,6 +88,7 @@ class _ProductState extends State<Product> {
                 ),
                 Text(
                   widget.item["detail"],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black.withOpacity(.70),
