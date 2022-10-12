@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lemondes/Functions/Functions.dart';
 import 'package:lemondes/Functions/User.dart';
+import 'package:lemondes/Pages/Login.dart';
 import 'package:lemondes/Widgets/for_all.dart';
 
 import 'package:lemondes/Widgets/for_cart.dart';
@@ -34,7 +35,6 @@ class _CartState extends State<Cart> {
 
   void delete(String id) {
     Map tData = jsonDecode(local.get("cart")!);
-    print("$id $tData");
     tData["total"] -=
         tData["items"][id]["qun"] * double.parse(tData["items"][id]["price"]);
     tData["items"].remove(id);
@@ -60,24 +60,30 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar:total==0?null:BottomButton(
-            text: "Check Out Total : \$$total",
-            function: total == 0
-                ? null
-                : () {
-                    https.postMap({
-                      "submitorder": jsonEncode({
-                        "uid": context.read<User>().user!["uid"],
-                        "order": data,
-                      })
-                    }).then((value) {
-                      if (value["st"]) {
-                        local.delete("cart");
-                        getCart();
-                      }
-                      snakBar(value["mess"], value["st"], context);
-                    });
-                  }),
+        bottomNavigationBar: total == 0
+            ? null
+            : BottomButton(
+                text: "Check Out Total : \$$total",
+                function: total == 0
+                    ? null
+                    : () {
+                        if (context.read<User>().user == null) {
+                          push(context, const Login());
+                        } else {
+                          https.postMap({
+                            "submitorder": jsonEncode({
+                              "uid": context.read<User>().user!["uid"],
+                              "order": data,
+                            })
+                          }).then((value) {
+                            if (value["st"]) {
+                              local.delete("cart");
+                              getCart();
+                            }
+                            snakBar(value["mess"], value["st"], context);
+                          });
+                        }
+                      }),
         appBar: AppBar(
           title: const Text("Cart"),
         ),

@@ -2,13 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lemondes/Widgets/for_all.dart';
-import 'package:provider/provider.dart';
 
 import '../Functions/Functions.dart';
-import '../Functions/User.dart';
 import '../Widgets/for_products.dart';
 import 'Cart.dart';
-import 'Login.dart';
 
 class Products extends StatefulWidget {
   const Products({Key? key, required this.store}) : super(key: key);
@@ -47,11 +44,7 @@ class _ProductsState extends State<Products> {
               ? null
               : FloatingActionButton(
                   onPressed: () {
-                    push(
-                        context,
-                        context.read<User>().user != null
-                            ? const Cart()
-                            : const Login());
+                    push(context, const Cart());
                   },
                   child: const Icon(Icons.shopping_cart_rounded),
                 ),

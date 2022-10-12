@@ -200,7 +200,7 @@ class Count extends StatelessWidget {
               width: 30,
               height: 30,
               child: Opacity(
-                opacity: decrease==null?0.3:1,
+                opacity: decrease == null ? 0.3 : 1,
                 child: ColoredBox(
                   color: Colors.white.withOpacity(.4),
                   child: const Icon(Icons.remove, size: 20),

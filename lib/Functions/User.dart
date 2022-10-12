@@ -9,7 +9,7 @@ class User extends ChangeNotifier {
 
   Future<void> login(Map data) async {
     local.set("user", jsonEncode(data));
-    user = data;
+    setLogin(data);
     await FirebaseMessaging.instance
         .subscribeToTopic(data["uid"].toString().replaceAll("=", ""));
     notifyListeners();
@@ -23,7 +23,5 @@ class User extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setLogin(Map data){
-    user = data;
-  }
+  void setLogin(Map data) => user = data;
 }

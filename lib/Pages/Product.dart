@@ -102,10 +102,11 @@ class _ProductState extends State<Product> {
   }
 
   void addToCart(Map item) {
-    Map data =
-        local.get("cart") == null ? {"total":0,"items":{}} : jsonDecode(local.get("cart")!);
+    Map data = local.get("cart") == null
+        ? {"total": 0, "items": {}}
+        : jsonDecode(local.get("cart")!);
     if (data["items"].containsKey(item["id"])) {
-      data["items"][item["id"]]!["qun"]+=count;
+      data["items"][item["id"]]!["qun"] += count;
     } else {
       data["items"][item["id"]] = {
         "id": item["id"],
@@ -117,7 +118,7 @@ class _ProductState extends State<Product> {
         "store": item["store"],
       };
     }
-    data["total"]+=count*int.parse(item["price"]);
+    data["total"] += count * int.parse(item["price"]);
     local.set("cart", jsonEncode(data));
   }
 }

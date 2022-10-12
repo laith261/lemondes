@@ -56,7 +56,9 @@ class CartWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("\$${item["price"]}"),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     Expanded(
                       child: Count(
                         count: item["qun"],
