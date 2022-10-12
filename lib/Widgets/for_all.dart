@@ -190,51 +190,54 @@ class Count extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        ClipOval(
-          child: InkWell(
-            onTap: decrease,
-            child: SizedBox(
-              width: 30,
-              height: 30,
-              child: Opacity(
-                opacity: decrease == null ? 0.3 : 1,
-                child: ColoredBox(
-                  color: Colors.white.withOpacity(.4),
-                  child: const Icon(Icons.remove, size: 20),
+    return SizedBox(
+      width: 100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ClipOval(
+            child: InkWell(
+              onTap: decrease,
+              child: SizedBox(
+                width: 30,
+                height: 30,
+                child: Opacity(
+                  opacity: decrease == null ? 0.3 : 1,
+                  child: ColoredBox(
+                    color: Colors.white.withOpacity(.4),
+                    child: const Icon(Icons.remove, size: 20),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        AnimatedSwitcher(
-          transitionBuilder: (child, animation) => ScaleTransition(
-            scale: animation,
-            child: child,
+          AnimatedSwitcher(
+            transitionBuilder: (child, animation) => ScaleTransition(
+              scale: animation,
+              child: child,
+            ),
+            duration: const Duration(milliseconds: 250),
+            child: Text(
+              "$count",
+              style: const TextStyle(fontSize: 18),
+              key: ValueKey<int>(count),
+            ),
           ),
-          duration: const Duration(milliseconds: 250),
-          child: Text(
-            "$count",
-            style: const TextStyle(fontSize: 18),
-            key: ValueKey<int>(count),
-          ),
-        ),
-        ClipOval(
-          child: InkWell(
-            onTap: increase,
-            child: SizedBox(
-              width: 30,
-              height: 30,
-              child: ColoredBox(
-                color: Colors.white.withOpacity(.4),
-                child: const Icon(Icons.add, size: 20),
+          ClipOval(
+            child: InkWell(
+              onTap: increase,
+              child: SizedBox(
+                width: 30,
+                height: 30,
+                child: ColoredBox(
+                  color: Colors.white.withOpacity(.4),
+                  child: const Icon(Icons.add, size: 20),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
