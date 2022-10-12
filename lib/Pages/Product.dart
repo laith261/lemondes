@@ -28,7 +28,7 @@ class _ProductState extends State<Product> {
                   return Count(
                     count: count,
                     increase: () => set(() => count += 1),
-                    decrease: count == 0 ? null : () => set(() => count += -1),
+                    decrease: count == 1 ? null : () => set(() => count += -1),
                   );
                 },
               ),

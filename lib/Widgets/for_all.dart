@@ -193,13 +193,47 @@ class Count extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        IconButton(
-            onPressed: decrease,
-            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-        Text("$count", style: const TextStyle(fontSize: 18)),
-        IconButton(
-            onPressed: increase,
-            icon: const Icon(Icons.arrow_forward_ios_rounded)),
+        ClipOval(
+          child: InkWell(
+            onTap: decrease,
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: Opacity(
+                opacity: decrease==null?0.3:1,
+                child: ColoredBox(
+                  color: Colors.white.withOpacity(.4),
+                  child: const Icon(Icons.remove, size: 20),
+                ),
+              ),
+            ),
+          ),
+        ),
+        AnimatedSwitcher(
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+          duration: const Duration(milliseconds: 250),
+          child: Text(
+            "$count",
+            style: const TextStyle(fontSize: 18),
+            key: ValueKey<int>(count),
+          ),
+        ),
+        ClipOval(
+          child: InkWell(
+            onTap: increase,
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: ColoredBox(
+                color: Colors.white.withOpacity(.4),
+                child: const Icon(Icons.add, size: 20),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
